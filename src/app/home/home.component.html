@@ -1,0 +1,176 @@
+<div class="homeContainer" fxFill fxLayoutGap="15px" fxLayout="row wrap" fxLayout.xs="column" fxFlex="100">
+    <div class="mainPicture" fxLayout="column" fxFlex="25" fxFlex.xs="100">
+        <h1 style="font-size: 1.5em;">Alphie Shikwambana</h1>
+        <img src="../../assets/Alphie.jpeg" style="width: 100%;padding: 15px 0px;" alt="Alphie Shikwambana">
+        <p>Building Digital Solutions to Real World Problems</p>
+        <div>
+            <div class="titleTheme" fxLayoutGap="5px" fxLayoutAlign="start center">
+                <mat-icon>stars</mat-icon>
+                <h4>Spotlight</h4>
+            </div>
+            <div>
+                <a *ngFor="let link of spotlight" href="{{link.link}}" style="text-decoration:none" target="_blank">
+                    <div fxLayout="column" class="spotlight">
+                        <h4 style="margin-bottom: 5px !important;">{{link.title}}</h4>
+                        <div fxLayout="row" fxLayoutAlign="space-between center">
+                            <p>{{link.type}}</p>
+                            <p>{{link.company}}</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="titleTheme" fxLayoutGap="5px" fxLayoutAlign="start center">
+                <mat-icon>touch_app</mat-icon>
+                <h4>Technologies I use</h4>
+            </div>
+            <div fxLayout="row" class="socialContainer" style="overflow-x: scroll; max-width: 100%;">
+                <a *ngFor="let social of tech">
+                    <img class="iconsRow" src="{{social.icon}}" alt="{{social.name}} link for alphie" matTooltip="{{social.name}}"></a>
+            </div>
+            <div class="titleTheme" fxLayoutGap="5px" fxLayoutAlign="start center">
+                <mat-icon>group_add</mat-icon>
+                <h4>Social Networks</h4>
+            </div>
+            <div fxLayout="row" class="socialContainer">
+                <a *ngFor="let social of socialNetworks"  target="_blank" href="{{social.link}}">
+                    <img src="{{social.icon}}" alt="{{social.name}} link for alphie" matTooltip="{{social.name}}"></a>
+            </div>
+        </div>
+
+    </div>
+    <div class="category" fxLayoutGap="10px" fxLayout="column" fxFlex="70" fxFlex.xs="100">
+
+        <div class="sliderControls" fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="space-between center">
+            <div fxLayoutGap="5px" style="margin: 10px 0;" fxLayoutAlign="start center">
+                <mat-icon>group_work</mat-icon>
+                <h4>My Work</h4>
+            </div>
+
+            <!-- <div fxLayoutAlign="end center">
+                <div>
+                    <mat-icon>arrow_back</mat-icon>
+                </div>
+                <div>
+                    <mat-icon (click)="resume.scrollIntoView({ behavior: 'smooth', block: 'start' })">arrow_forward</mat-icon>
+                </div>
+            </div> -->
+        </div>
+
+        <div class="slider" fxLayout="row" fxLayoutGap="15px" fxFlex="100">
+            <mat-card *ngFor="let item of expertise; let i = index" class="expertiseCard" #cardContent[i]>
+                <mat-card-header>
+                    <mat-card-title>{{item.title}}<a href="{{item.link}}" target="_blank"><mat-icon style="font-size: 15px;">launch</mat-icon></a></mat-card-title>
+                    <!-- <mat-card-subtitle>Type</mat-card-subtitle> -->
+                </mat-card-header>
+                <img mat-card-image src="{{item.logo}}" alt="{{item.title}}">
+                <div *ngIf="loader">
+                    <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+                </div>
+                <mat-card-content style="max-height: 300px !important;overflow-y: auto;">
+                    <div>
+                        <a *ngFor="let link of item.data" href="{{link.website}}" style="text-decoration:none"
+                            target="_blank">
+                            <div fxLayout="column" style="margin: 10px;border-bottom: 1px solid beige;padding: 5px 0;">
+                                <h4 style="margin-bottom: 5px !important;font-weight: 500;font-size: 16px;">
+                                    {{link.title}}</h4>
+                                <p style="text-align: justify">{{link.description}}</p>
+                                <div fxLayout="row" style="margin: 10px 0;" fxLayoutAlign="space-between center">
+                                    <p style="padding: 5px 10px; background: #424242;border-radius: 5px;">View</p>
+                                    <p><small>Type: </small>{{link.type}}</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </mat-card-content>
+                <!-- <mat-card-actions>
+                    <button mat-button>LIKE</button>
+                    <button mat-button>SHARE</button>
+                </mat-card-actions> -->
+            </mat-card>
+
+        </div>
+
+        <div class="titleTheme" fxLayoutGap="5px" style="margin: 10px 0;" fxLayoutAlign="start center">
+            
+            <h4>Work with Alphie</h4>
+        </div>
+        <div fxLayout="row wrap" fxLayoutGap="15px">
+            
+            <a href="mailto:alphie@unswerve.tech" class="btn" target="_blank">
+                <div fxLayout="row"> 
+                <mat-icon>mail</mat-icon><p style="padding: 3px;">alphie@unswerve.tech</p>
+                </div>
+            </a>
+
+            <a href="https://wa.me/27670464770?text=Hey.%20I'm%20interested%20in%20working%20with%20you" class="btn" target="_blank">
+                <div fxLayout="row"> 
+                <mat-icon>call</mat-icon><p  style="padding: 3px;">WhatsApp Me</p>
+                </div>
+            </a>
+            <!-- <button mat-button>Submit</button> -->
+        </div>
+
+        <div class="titleTheme" fxLayoutGap="5px" style="margin: 10px 0;" fxLayoutAlign="start center">
+            <mat-icon>widgets</mat-icon>
+            <h4>What I get up to day to day</h4>
+        </div>
+
+
+        <div #resume fxLayout="column">
+            <div *ngIf="loader">
+                <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+            </div>
+            <mat-tab-group>
+            <mat-tab label="{{info.title}}" *ngFor="let info of career; let i = index">
+                <div *ngFor="let item of info.info" fxLayoutGap="10px" class="careerItem">
+                    
+                    <h4 style="font-weight: 400;">{{item.title}}</h4>
+                    <h5>Company : {{item.company}}</h5>
+                    <br>
+                    <p>Description : {{item.description}}</p>
+                    <br>
+                    <p>Duration : {{item.startDate | date}} - {{item.endDate | date}}</p>
+                    <br>
+                    <a style="text-decoration: none;" href="{{item.website}}" target="_blank"><p style="color: #008b8b;">Visit Company website</p></a> 
+                    <br>
+                </div>
+            </mat-tab>
+          </mat-tab-group>
+            <!-- <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="15px" fxFlex="100">
+                <mat-form-field appearance="legacy">
+                    <mat-label>Name</mat-label>
+                    <input matInput>
+                </mat-form-field>
+                <mat-form-field appearance="legacy">
+                    <mat-label>Surname</mat-label>
+                    <input matInput>
+                </mat-form-field>
+                <mat-form-field appearance="legacy">
+                    <mat-label>Email Address</mat-label>
+                    <input matInput type="email">
+                </mat-form-field>
+            </div>
+            <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="15px" fxFlex="100">
+                <mat-form-field appearance="legacy">
+                    <mat-label>Phone Number</mat-label>
+                    <input matInput type="number">
+                </mat-form-field>
+                <mat-form-field appearance="legacy">
+                    <mat-label>Organisation</mat-label>
+                    <input matInput>
+                </mat-form-field>
+                <mat-form-field appearance="legacy">
+                    <mat-label>City of Residence</mat-label>
+                    <input matInput>
+                </mat-form-field>
+            </div>
+            <div fxLayout="row wrap" fxLayout.xs="column" fxFlex="100">
+                <mat-form-field appearance="legacy" [ngStyle.gt-xs]="{'width': '48%'}">
+                    <mat-label>How can I help?</mat-label>
+                    <textarea matInput></textarea>
+                </mat-form-field>
+            </div>
+        </div> -->
+
+    </div>
+</div>
